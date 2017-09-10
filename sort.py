@@ -25,6 +25,7 @@ def bubbleSortEfficient(array):
                 array[j] = array[j + 1]
                 array[j + 1] = tmp
                 swapped = True
+        i = i + 1
 
 def insertionSort(array):
     for i in range(1, len(array)):
