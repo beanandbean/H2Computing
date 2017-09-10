@@ -26,7 +26,7 @@ class StackArray:
         if not self.isEmpty():
             return self.array[self.top]
             
-    def display(self):
+    def display(self):  # from top
         for i in range(self.top, -1, -1):
             print(self.array[i])
             
