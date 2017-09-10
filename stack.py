@@ -9,6 +9,9 @@ class StackArray:
     def isEmpty(self):
         return self.top == -1
         
+    def length(self):
+        return self.top + 1
+        
     def push(self, value):
         if not self.isFull():
             self.top = self.top + 1
@@ -23,6 +26,10 @@ class StackArray:
         if not self.isEmpty():
             return self.array[self.top]
             
+    def display(self):
+        for i in range(self.top, -1, -1):
+            print(self.array[i])
+            
 class Node:
     def __init__(self):
         self.value = None
@@ -32,6 +39,7 @@ class StackLinkedList:
     def __init__(self, size = 20):
         self.array = [Node() for i in range(size)]
         self.top = -1
+        self.len = 0
         self.nextFree = 0
         for i in range(size - 1):
             self.array[i].next = i + 1
@@ -42,6 +50,9 @@ class StackLinkedList:
     def isEmpty(self):
         return self.top == -1
         
+    def length(self):
+        return self.len
+        
     def push(self, value):
         if not self.isFull():
             current = self.nextFree
@@ -49,6 +60,7 @@ class StackLinkedList:
             self.nextFree = self.array[current].next
             self.array[current].next = self.top
             self.top = current
+            self.len = self.len + 1
             
     def pop(self):
         if not self.isEmpty():
@@ -56,6 +68,7 @@ class StackLinkedList:
             self.top = self.array[current].next
             self.array[current].next = self.nextFree
             self.nextFree = current
+            self.len = self.len - 1
             return self.array[current].value
             
     def peek(self):
