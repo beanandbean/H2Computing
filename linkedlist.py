@@ -70,3 +70,10 @@ class LinkedList:
                 return current
             else:
                 return -1  # not found
+                
+    def display(self):
+        if not self.isEmpty():
+            current = self.start
+            while current != -1:
+                print(self.array[current].value)
+                current = self.array[current].next
