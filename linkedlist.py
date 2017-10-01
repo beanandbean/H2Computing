@@ -131,7 +131,7 @@ class LinkedListUncapped:
 
 # This linked list does not use array to store nodes
 # Its advantage is that this linked list can contain any number of nodes
-# However, it can still allow remove freely
+# Yet, it can still allow remove freely
 class NodeNative:
     def __init__(self):
         self.value = None
