@@ -1,4 +1,4 @@
-class QueueArray:
+class QueueArrayCircular:
     def __init__(self, size = 20):
         self.array = [None] * 20
         self.head = -1
@@ -31,6 +31,33 @@ class QueueArray:
     def display(self):  # from tail to head
         for i in range(self.len - 1, -1, -1):
             print(self.array[self.head - i])
+
+# This is an non-circular implementation
+# It's less time efficient, but can contain any number of values
+class QueueArray:
+	def __init__(self):
+		self.array = []
+	
+	def isEmpty(self):
+		return len(self.array) == 0
+		
+	def length(self):
+		return len(self.array)
+		
+	def push(self, value):
+		self.array.append(value)
+			
+	def pop(self):
+		if not self.isEmpty():
+			return self.array.pop(0)
+			
+	def peek(self):
+		if not self.isEmpty():
+			return self.array[0]
+			
+	def display(self):	# from tail to head
+		for value in self.array:
+			print(value)
 
 class Node:
     def __init__(self):
@@ -90,3 +117,53 @@ class QueueLinkedList:
             while current != -1:
                 print(self.array[current].value)
                 current = self.array[current].next
+
+# This is the linked list implementation without using array of nodes
+# It is an time-efficient implementation that allows any number of nodes
+class NodeNative:
+    def __init__(self):
+        self.value = None
+        self.next = None
+
+class QueueLinkedListNative:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.len = 0
+    
+    def isEmpty(self):
+        return self.head == None
+        
+    def length(self):
+        return self.len
+        
+    def push(self, value):
+        current = NodeNative()
+        current.value = value
+        current.next = None
+        if self.isEmpty():
+            self.tail = current
+        else:
+            self.head.next = current
+        self.head = current
+        self.len = self.len + 1
+            
+    def pop(self):
+        if not self.isEmpty():
+            current = self.tail
+            self.tail = current.next
+            if self.tail == None:
+                self.head = None
+            self.len = self.len - 1
+            return current.value
+            
+    def peek(self):
+        if not self.isEmpty():
+            return self.tail.value
+            
+    def display(self):  # from top
+        if not self.isEmpty():
+            current = self.tail
+            while current != None:
+                print(current.value)
+                current = current.next
