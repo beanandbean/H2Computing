@@ -20,26 +20,35 @@ def hexToDec(hexStr):
     return decNum
     
 def decToBin(decNum):
-    binStr = ""
-    while decNum > 0:
-        binStr = str(decNum % 2) + binStr
-        decNum = decNum // 2
-    return binStr
+    if decNum == 0:
+        return "0"
+    else:
+        binStr = ""
+        while decNum > 0:
+            binStr = str(decNum % 2) + binStr
+            decNum = decNum // 2
+        return binStr
     
 def decToOct(decNum):
-    octStr = ""
-    while decNum > 0:
-        octStr = str(decNum % 8) + octStr
-        decNum = decNum // 8
-    return octStr
+    if decNum == 0:
+        return "0"
+    else:
+        octStr = ""
+        while decNum > 0:
+            octStr = str(decNum % 8) + octStr
+            decNum = decNum // 8
+        return octStr
         
 def decToHex(decNum):
-    hexStr = ""
-    while decNum > 0:
-        value = decNum % 16
-        if value < 10:
-            hexStr = str(value) + hexStr
-        else:
-            hexStr = chr(value - 10 + ord("A")) + hexStr
-        decNum = decNum // 16
-    return hexStr
+    if decNum == 0:
+        return "0"
+    else:
+        hexStr = ""
+        while decNum > 0:
+            value = decNum % 16
+            if value < 10:
+                hexStr = str(value) + hexStr
+            else:
+                hexStr = chr(value - 10 + ord("A")) + hexStr
+            decNum = decNum // 16
+        return hexStr
