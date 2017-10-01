@@ -1,3 +1,5 @@
+# Queues in this file all pushes to head, and pops from tail
+
 class QueueArrayCircular:
     def __init__(self, size = 20):
         self.array = [None] * 20
@@ -111,7 +113,7 @@ class QueueLinkedList:
         if not self.isEmpty():
             return self.array[self.tail].value
             
-    def display(self):  # from top
+    def display(self):  # from tail to head
         if not self.isEmpty():
             current = self.tail
             while current != -1:
@@ -161,7 +163,7 @@ class QueueLinkedListNative:
         if not self.isEmpty():
             return self.tail.value
             
-    def display(self):  # from top
+    def display(self):  # from tail to head
         if not self.isEmpty():
             current = self.tail
             while current != None:
