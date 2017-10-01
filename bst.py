@@ -65,6 +65,56 @@ class BinarySearchTree:
 		else:
 			return self.searchRecursive(value, self.array[current].right)
 						
+	def remove(self, value):
+		if self.isEmpty():
+			found = -1  # not found
+		elif self.array[self.start].value == value:
+			found = self.start
+			parent = self.array[self.start].left
+			right = self.array[self.start].right
+			if parent != -1:
+				self.start = parent
+				left = self.array[parent].right
+			else:
+				self.start = right
+		else:
+			found = self.start
+			while found != -1 and self.array[found].value != value:
+				previous = found
+				if self.array[found].value > value:
+					dir = "L"
+					found = self.array[found].left
+				else:
+					dir = "R"
+					found = self.array[found].right
+					
+			if found != -1:
+				parent = self.array[found].left
+				right = self.array[found].right
+				if dir == "L":
+					if parent != -1:
+						self.array[previous].left = parent
+						left = self.array[parent].right
+					else:
+						self.array[previous].left = right
+				else:
+					if parent != -1:
+						self.array[previous].right = parent
+						left = self.array[parent].right
+					else:
+						self.array[previous].right = right
+						
+		if found != -1:
+			if parent != -1:
+				while left != -1:
+					self.array[parent].right = left
+					parent = left
+					left = self.array[parent].left
+				self.array[parent].right = right
+			self.array[found].right = self.nextFree
+			self.nextFree = found
+		return found  # -1 for not found
+						
 	def printInorder(self, current = None):
 		if current == None:
 			current = self.start
@@ -153,6 +203,56 @@ class BinarySearchTreeNative:
 			return self.searchRecursive(value, current.left)
 		else:
 			return self.searchRecursive(value, current.right)
+						
+	def remove(self, value):
+		if self.isEmpty():
+			found = None  # not found
+		elif self.start.value == value:
+			found = self.start
+			parent = self.start.left
+			right = self.start.right
+			if parent != None:
+				self.start = parent
+				left = parent.right
+			else:
+				self.start = right
+		else:
+			found = self.start
+			while found != None and found.value != value:
+				previous = found
+				if found.value > value:
+					dir = "L"
+					found = found.left
+				else:
+					dir = "R"
+					found = found.right
+					
+			if found != None:
+				parent = found.left
+				right = found.right
+				if dir == "L":
+					if parent != None:
+						previous.left = parent
+						left = parent.right
+					else:
+						previous.left = right
+				else:
+					if parent != None:
+						previous.right = parent
+						left = parent.right
+					else:
+						previous.right = right
+						
+		if found != None:
+			if parent != None:
+				while left != None:
+					parent.right = left
+					parent = left
+					left = parent.left
+				parent.right = right
+			return True  # found
+		else:
+			return False  # not found
 						
 	def printInorder(self, current = "START"):
 		if current == "START":
