@@ -81,3 +81,46 @@ class StackLinkedList:
             while current != -1:
                 print(self.array[current].value)
                 current = self.array[current].next
+
+# This is the linked list implementation without using array of nodes
+# It is an time-efficient implementation that allows any number of nodes
+class NodeNative:
+	def __init__(self):
+		self.value = None
+		self.next = None
+
+class StackLinkedListNative:
+	def __init__(self):
+		self.top = None
+		self.len = 0
+	
+	def isEmpty(self):
+		return self.top == None
+		
+	def length(self):
+		return self.len
+		
+	def push(self, value):
+		current = NodeNative()
+		current.value = value
+		current.next = self.top
+		self.top = current
+		self.len = self.len + 1
+			
+	def pop(self):
+		if not self.isEmpty():
+			current = self.top
+			self.top = current.next
+			self.len = self.len - 1
+			return current.value
+			
+	def peek(self):
+		if not self.isEmpty():
+			return self.top.value
+			
+	def display(self):	# from top
+		if not self.isEmpty():
+			current = self.top
+			while current != None:
+				print(current.value)
+				current = current.next
